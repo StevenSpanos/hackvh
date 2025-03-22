@@ -13,7 +13,9 @@ public class Main{
     inputChoices.add("exit");
     while(true){
       step();
-      collectInput();
+      while(!collectInput().equals("step")){
+        guy.print();
+      }
     }
   }
 
@@ -36,8 +38,9 @@ public class Main{
       choice = input.nextLine();
     }
     if(choice.equals("exit")){System.exit(0);}
-    if(choice.equals("feed")){guy.setFood(11);}
+    if(choice.equals("feed")){guy.setFood((int) guy.getMax()); inputChoices.remove(1);}
     if(choice.equals("play")){play();}
+    guy.updateStatus();
     return choice;
   }
   public static void setup(){
@@ -53,5 +56,8 @@ public class Main{
   }
   public static void play(){
     System.out.println("You play with " + guy.getName());
+    guy.setFriendship(guy.getFriendship()+((int) (Math.random() * 10)));
+    System.out.println(guy.getName() + "'s friendship is now " + guy.getFriendship());
+    guy.updateStatus();
   }
 }
