@@ -23,7 +23,12 @@ public class Main{
     guy.setFood(guy.getFood() - 1);
     guy.updateStatus();
     guy.print();
-    if(guy.getFood() <= 0){
+    if(guy.getFood() < 0){
+      System.out.println("You missed your pills!");
+      System.out.println(guy.getName() + " died...");
+      System.exit(0);
+    }
+    if(guy.getFood() < 1){
       inputChoices.add(1,"feed");
       System.out.println(guy.getName() + " is hungry");
       System.out.println("(that means you should take your pills or whatever)");

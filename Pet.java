@@ -35,6 +35,8 @@ public class Pet{
         System.out.println(":C");
         if(status == "hungry")
         System.out.println(":P");
+        if(status == "dead")
+        System.out.println("XP");
 
         System.out.println();
         System.out.println("Hunger Level: " + food);
@@ -50,6 +52,7 @@ public class Pet{
         if(food < max-2*(max/4) && food > max-3*(max/4)){status = "sad";}
         if(food < max-3*(max/4) && food > max-4*(max/4)){status = "very sad";}
         if(food < 1){status = "hungry";}
+        if(food < 0){status = "dead";}
     }
 
     public int getFood(){return food;}
