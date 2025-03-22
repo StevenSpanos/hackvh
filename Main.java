@@ -56,8 +56,53 @@ public class Main{
   }
   public static void play(){
     System.out.println("You play with " + guy.getName());
+    blackjack();
     guy.setFriendship(guy.getFriendship()+((int) (Math.random() * 10)));
     System.out.println(guy.getName() + "'s friendship is now " + guy.getFriendship());
     guy.updateStatus();
+  }
+
+  public static void blackjack(){
+    Scanner input = new Scanner(System.in);
+    String choice = "";
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush();  //clears console
+
+    System.out.println("bet: ");
+    double bet = input.nextDouble();
+    int house = (int) (Math.random()*21) + 1;
+    int total = (int) (Math.random()*21) + 1;
+
+    while(!choice.equals("stand")){
+
+      System.out.print("\033[H\033[2J"); 
+      System.out.flush();  //clears console
+      
+    System.out.println("Total: " + total);
+    if(total > 21){System.out.println("You Lose!"); break;}
+    else{
+      System.out.print("Hit or Stand? "); choice = input.nextLine();
+      System.out.println();
+      while(!choice.equals("hit") && !choice.equals("stand")){
+        System.out.print("Hit or Stand? "); choice = input.nextLine();
+        System.out.println();
+      }
+      if(choice.equals("hit")){
+        total += ((int) (Math.random()*11) + 1);
+      }
+    }
+  }
+  System.out.println("The House had: " + house);
+  if(total == 21 || total > house){
+    System.out.println("You Win!");
+  }
+  else{
+    System.out.println("You Lose...");
+  }
+  System.out.println("Play Again? y/n");
+  while(!choice.equals("y") && !choice.equals("n")){
+    choice = input.nextLine();
+  }
+  if(choice.equals("y")){blackjack();}
   }
 }
