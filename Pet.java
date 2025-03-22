@@ -2,15 +2,18 @@ public class Pet{
     private int food;
     private String name;
     private String status;
+    private double max;
     public Pet(){
         food = 11;
         name = "swagman";
         status = "swag";
+        max = 10;
     }
-    public Pet(int f, String n, String s){
+    public Pet(int f, String n, String s, double m){
         food = f;
         name = n;
         status = s;
+        max = m;
     }
 
     public void print(){
@@ -32,7 +35,7 @@ public class Pet{
         System.out.println();
         System.out.println("Hunger Level: " + food);
         System.out.println(name + " is feeling " + status);
-        System.out.println(name + " is "+(((10.0-food)/10.0)*100) + "% Hungry");
+        System.out.println(name + " is "+(((max-food)/max)*100) + "% Hungry");
     }
 
     public void updateStatus(){
@@ -40,8 +43,8 @@ public class Pet{
         if(food < 10 && food > 8){status = "happy";}
         if(food < 8 && food > 6){status = "mild";}
         if(food < 6 && food > 4){status = "sad";}
-        if(food < 4 && food > 2){status = "very sad";}
-        if(food < 2){status = "hungry";}
+        if(food < 4 && food > 1){status = "very sad";}
+        if(food < 1){status = "hungry";}
         
     }
     public int getFood(){return food;}
@@ -49,4 +52,7 @@ public class Pet{
     
     public String getName(){return name;}
     public void setName(String n){name = n;}
+
+    public double getMax(){return max;}
+    public void setMax(double m){max = m;}
 }
