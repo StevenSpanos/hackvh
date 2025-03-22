@@ -5,9 +5,11 @@ public class Main{
   static ArrayList<String> inputChoices = new ArrayList<String>();
   static Pet guy = new Pet();
   public static void main(String args[]){
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush();  //clears console
     setup();
     inputChoices.add("step");
-    inputChoices.add("feed");
+    inputChoices.add("play");
     inputChoices.add("exit");
     while(true){
       step();
@@ -20,6 +22,7 @@ public class Main{
     guy.updateStatus();
     guy.print();
     if(guy.getFood() <= 0){
+      inputChoices.add(1,"feed");
       System.out.println(guy.getName() + " is hungry");
       System.out.println("(that means you should take your pills or whatever)");
     }
@@ -34,15 +37,21 @@ public class Main{
     }
     if(choice.equals("exit")){System.exit(0);}
     if(choice.equals("feed")){guy.setFood(11);}
+    if(choice.equals("play")){play();}
     return choice;
   }
   public static void setup(){
     Scanner input = new Scanner(System.in);
-    System.out.println("After how many hours do you have to take your next pill?");
+    System.out.println("How often do you have to take your pills? (Every x hours)");
     int max = input.nextInt();
     guy.setMax(max);
-    System.out.println("How long ago did you take your last pill?");
+    System.out.println("How long ago did you take your last pill? (x hours ago)");
     int food = input.nextInt();
-    guy.setFood(food);
+    guy.setFood(food+1);
+    guy.updateStatus();
+    guy.print();
+  }
+  public static void play(){
+    System.out.println("You play with " + guy.getName());
   }
 }

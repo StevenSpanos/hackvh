@@ -3,6 +3,7 @@ public class Pet{
     private String name;
     private String status;
     private double max;
+    
     public Pet(){
         food = 11;
         name = "swagman";
@@ -45,8 +46,8 @@ public class Pet{
         if(food < 6 && food > 4){status = "sad";}
         if(food < 4 && food > 1){status = "very sad";}
         if(food < 1){status = "hungry";}
-        
     }
+
     public int getFood(){return food;}
     public void setFood(int f){food = f;}
     
